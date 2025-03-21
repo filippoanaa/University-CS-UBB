@@ -1,0 +1,17 @@
+algoritm cheieMax()
+	cheieMax=NULL_TCHEIE
+	daca size = 0 atunci
+		return NULL_TCHEIE
+	sfDaca
+	pentru i<-0,cap executa
+		curent<-i;
+		cat timp curent!=-1
+			daca table[curent].first>cheieMax
+				cheieMax<-table[curent].first
+			altfel
+				curent<-urm[curent]
+			sfDaca
+		sfCatTimp
+	sfPentru
+	return cheieMax
+sfAlgoritm

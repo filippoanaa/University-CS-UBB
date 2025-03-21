@@ -1,0 +1,13 @@
+Algoritm eliminaDinkinK(k)
+	sterse<-0
+	iterator<-iterator.prim
+	CatTimp it.valid executa
+		pentru i<-0, k si it.valid
+			sterge(it)
+			sterse<-sterse+1
+			it.urmator
+		sfpentru
+	sfCatTimp
+	return sterse
+sfAlgoritm	
+	

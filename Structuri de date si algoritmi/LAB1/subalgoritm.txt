@@ -1,0 +1,11 @@
+Algoritm eliminaNAparitii(n, elem)
+	eliminari <- 0;
+	CatTimp cauta(elem)=A si eliminari<n executa
+		sterge(elem)
+		eliminari<- eliminari+1
+	SfCatTimp
+	returneaza eliminari
+SfAlgoritm
+
+
+		
