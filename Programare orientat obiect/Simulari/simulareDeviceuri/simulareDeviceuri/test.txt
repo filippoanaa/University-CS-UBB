@@ -1,0 +1,3 @@
+tip2,bb,2002,rosu,100
+tip2,cc,1999,alb,200
+tip3,aa,2000,albastru,300

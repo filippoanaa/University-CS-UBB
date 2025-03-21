@@ -1,0 +1,4 @@
+numepr1,soclupr,21,1000
+placa1,soclupr,600
+numepr2,soclupr2,21,1000
+placa2,fdw,100

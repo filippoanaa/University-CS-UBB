@@ -1,0 +1,2 @@
+AAPL,Apple,192.23,16
+TSLA,Tesla,186.20,-20
