@@ -1,0 +1,6 @@
+1 titlu1 artist1 pop
+2 titlu2 artist2 rock
+3 titlu3 artist3 rock
+4 titlu4 artist4 folk
+5 titlu5 artist5 disco
+6 titlu6 artist5 disco 

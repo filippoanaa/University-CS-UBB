@@ -1,0 +1,5 @@
+1 3 XXXOOOXOX O inprogress
+2 3 XXXOXOXOX O finished
+3 4 XXXXOOXO-X------ X inprogress
+4 3 XXX--OXOX X inprogress
+5 3 XXX--OXOX O unstarted

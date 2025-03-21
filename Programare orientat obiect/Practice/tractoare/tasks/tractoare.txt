@@ -1,0 +1,4 @@
+1,Tractor1,Type1,0
+2,Tractor2,Type2,4
+3,Tractor3,Type3,6
+4,Tractor4,Type3,2

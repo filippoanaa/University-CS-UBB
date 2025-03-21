@@ -1,0 +1,7 @@
+1;aplicatie;oana sofi ;done
+2;joc;oana robert ;done
+3;instagram;anca sofi ;inprogress
+4;facebook;maria dan marcel ;closed
+5;spotify;oana ;done
+6;tiktok;horatiu anca ;done
+7;youtube;daniel ioana ;closed
