@@ -1,0 +1,22 @@
+;substituie un element E prin elementele unei liste L1 la toate nivelurile unei liste date L
+;
+;substituie(l1..ln, e, a1..am) = [], daca n = 0
+;                                susbtituie(l1, e, a1..am) U susbtituie(l2..ln, e, a1..am)   , daca l1 -lista
+;                                substituie(l2..ln, e, a1..am) U a1..am  , l1 = e
+;                                l1 U substituie(l2..ln, e, a1..am), altfel
+
+(defun substituie (l e a)
+    (cond
+        ((null l) ())
+        ((listp(car l)) 
+          (cons (substituie (car l) e a) 
+          (substituie (cdr l) e a)
+        ))
+        ((equal (car l) e) 
+          (append a (substituie (cdr l) e a)     ;folosesc append ca sa inserez elementele 
+        ))                                       ; daca as fi folosit cons mi ar fi inserat ca lista
+        (t ( cons (car l) (substituie(cdr l) e a)))
+    )
+)
+
+(print (substituie `(1 2 (1 2) 3) `2 `(0 0)))

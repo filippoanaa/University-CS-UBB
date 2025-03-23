@@ -1,0 +1,56 @@
+;inordine : stang-rad-drept
+
+;pt (1) (car arb) - radacina
+;       (cadr arb) -  nr subarbori
+
+;pt (2) (car arb) - radacina
+;       (cadr arb) - subarborele stang
+;        (cddr arb) - subarbore drept 
+
+;parcurg_st(l1..ln, noduri, muchii) = [], n = 0
+;                                     [], muchii + 1 = muchii
+;                                      l1 U l2 U parcurg_st(l3..ln, noduri + 1, l2 + muchii), altfel
+(defun parcurg_st (arb n m) 
+  (cond
+    ((null arb) ())
+    ((= n (+ 1 m)) ())
+    (t (cons (car arb) 
+             (cons (cadr arb) 
+                   (parcurg_st (cddr arb) (+ 1 n) (+ (cadr arb) m)))))))
+
+;stang(l1..ln) = parcurg_st(l3..ln, 0 , 0)
+(defun stang (arb)
+  (parcurg_st (cddr arb) 0 0))
+
+  
+;parcurg_dr(l1..ln, noduri, muchii) = [], n = 0
+;                                     l1..ln, muchii + 1 = muchii
+;                                     parcurg_dr(l3..ln, noduri + 1, l2 + muchii), altfel
+(defun parcurg_dr (arb n m)
+  (cond
+    ((null arb) ())
+    ((= (+ 1 m) n) arb)
+    (t (parcurg_dr (cddr arb) (+ 1 n) (+ (cadr arb) m)))))
+
+;drept(l1..ln) = parcurg_dr(l3..ln, 0, 0)
+(defun drept (arb)
+  (parcurg_dr (cddr arb) 0 0))
+
+;transforma(l1..ln) = [l1 transforma(stang l1..ln) transforma(drept l1..ln)], l2 = 2
+;                     [l1 transforma(stang l1..ln) ], l2 = 1
+;                     [l1], altfel             
+(defun transforma (arb)
+  (cond
+    ((= (cadr arb) 2) 
+     (list (car arb) 
+           (transforma (stang arb)) 
+           (transforma (drept arb))))
+    ((= (cadr arb) 1) 
+     (list (car arb) 
+           (transforma (stang arb))))
+    (t (list (car arb)))))
+    
+print (transforma `(A 2 B 0 C 2 D 0 E 0)))
+
+
+;pt test l1 si daca dam de arbori o sa fie reprezentare de tip 2

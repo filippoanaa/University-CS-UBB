@@ -1,0 +1,20 @@
+;numar_noduri(l, nivel, k) = 1, l - atom si nivel = k
+;                            0, l - atom (si nivel != k)
+;                           (sigma de la 1 la n)(l(i), nivel + 1, k), altfel, unde l = l1..ln
+
+(defun numar_noduri (l nivel k)
+  (cond
+    ((and (atom l) (= nivel k)) 1)
+    ((atom l) 0)
+    (t (apply #'+ 
+              (mapcar #'(lambda (x)
+                          (numar_noduri x (+ nivel 1) k)
+                        )l
+              )
+        )
+    )
+  )
+)
+
+
+(print (numar_noduri '(a (b (c)) (d) (e (f))) -1 1))

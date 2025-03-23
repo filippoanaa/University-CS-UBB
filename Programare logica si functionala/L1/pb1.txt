@@ -1,0 +1,147 @@
+                                    PB1
+a) Sa se insereze intr-o lista liniara un atom a dat dupa al 2-lea, al 4-lea, al 6-lea,....element.
+(defun insesare_dupa_index_par (l a index)
+  (cond
+    ((null l) nil)
+    ((= 0 (mod index 2)) 
+     (cons (car l) 
+           (cons a 
+                 (insesare_dupa_index_par (cdr l) a (+ 1 index)))))
+    (t 
+     (cons (car l) 
+           (insesare_dupa_index_par (cdr l) a (+ 1 index))))))
+(print (insesare_dupa_index_par '(1 2 3 4 5 6) 'a 1))
+
+
+
+b) Definiti o functie care obtine dintr-o lista data lista tuturor atomilor care apar, pe orice nivel, dar in ordine inversa. De exemplu: (((A B) C) (D E)) --> (E D C B A)   
+(defun extrage_atomii(l)
+    (cond 
+        ((null l) () )
+        ((atom (car l))
+            (cons (car l) (extrage_atomii (cdr l))))
+        (t (append (extrage_atomii (car l)) (extrage_atomii (cdr l))))
+    )
+)
+
+(defun my_reverse(l)
+    (cond
+        ((null l) () )
+        (t (append (my_reverse(cdr l) ) (list (car l ))))
+    )
+)
+
+(defun extrage_atomii_invers(l)
+    (my_reverse (extrage_atomii l))
+)
+(print (extrage_atomii `(1 2 (1 (2 3)) 3)))
+
+
+c) Definiti o functie care intoarce cel mai mare divizor comun al numerelor dintr-o lista neliniara.  
+(defun cmmdc (a b)
+    (cond   
+        ((= b 0) a)
+        ((= a 0) b)
+        ((= a b) a)
+        ((> a b)
+            (cmmdc (- a b) b))
+        (t (cmmdc a (- b a)))
+    )
+)
+
+(defun cmmdc_lista (l)
+    (cond
+        ((null l) 0)
+        ((numberp (car l))
+            (cmmdc (car l) (cmmdc_lista(cdr l)))   
+        )
+        ((listp (car l))
+            (cmmdc (cmmdc_lista (car l)) (cmmdc_lista (cdr l))))
+        (t (cmmdc_lista (cdr l)))
+    )
+)
+(print (cmmdc_lista '((12 24) a (36 48) 60)))
+
+
+d) Sa se scrie o functie care determina numarul de aparitii ale unui atom dat intr-o lista neliniara.        
+(defun nr_aparitii (l at cnt)
+    (cond   
+        ((null l) cnt)
+        ((listp (car l))
+            (nr_aparitii (cdr l) at (+ cnt (nr_aparitii (car l) at 0))))
+        ((and (atom (car l)) (equal (car l) at))
+          (nr_aparitii (cdr l) at (+ cnt 1))
+        )
+        (t (nr_aparitii (cdr l) at cnt))
+    
+    )
+)    
+(print (nr_aparitii '((12 24) a (36 12 48) 60) '12 0))
+   
+   
+                                PB 2
+                                
+a) Definiti o functie care selecteaza al n-lea element al unei liste, sau NIL, daca nu exista.
+(defun selecteaza_nth_elem (l nth index)
+    (cond   
+        ((null l) ())
+        ((= nth index) (car l))
+        (t (selecteaza_nth_elem (cdr l) nth (+ index 1)))
+    )
+)
+(print (selecteaza_nth_elem '(1 2 3 4) 10 1))
+        
+        
+b) Sa se construiasca o functie care verifica daca un atom e membru al unei liste nu neaparat liniara.
+(defun contine_atom (l at)
+    (cond
+        ((null l) nil)
+        ((atom (car l))
+            (equal (car l) at)
+        )
+        ((listp (car l))
+            (or (contine_atom (car l) at) (contine_atom (cdr l) at))
+        )
+        (t (contine_atom (cdr l) at)
+    )
+)
+
+c) Sa se construiasca lista tuturor sublistelor unei liste. Prin sublista se intelege fie lista insasi, fie un element de pe orice nivel, care este lista. ???
+(defun subliste (l)
+  (cond
+    ((null l) nil) ; Dacă lista e goală, returnează nil
+    ((listp (car l)) ; Dacă primul element e o listă
+     (append (list (car l)) ; Adaugă prima sublistă
+             (subliste (car l)) ; Adaugă sublistele din interiorul acesteia
+             (subliste (cdr l)))) ; Continuă cu restul listei
+    (t (subliste (cdr l))))) ; Dacă nu e listă, continuă cu restul
+
+
+
+
+d)Sa se scrie o functie care transforma o lista liniara intr-o multime.
+(defun lista_in_multime(l)
+    (cond
+        ((null l) ())
+        ((contine_atom (cdr l) (car l))
+            (lista_in_multime (cdr l) ))
+        (t (cons (car l) (lista_in_multime (cdr l))))
+    )
+)
+(print (lista_in_multime '(1 2 3 1 4 4 5) ))
+
+
+            PB3
+            
+a) Definiti o functie care intoarce produsul a doi vectori.
+(defun produs_vectori (v1 v2)
+    (cond 
+        ((or (null v1) (null v2)) 0)
+        (t (+ (* (car v1) (car v2)) (produs_vectori (cdr v1) (cdr v2))))
+    )
+)
+(print (produs_vectori '(1 1) '(1 1)))
+
+b) Sa se construiasca o functie care intoarce adancimea unei liste.
+
+          

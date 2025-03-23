@@ -1,0 +1,33 @@
+;determina suma a doua numere in reprezentare de lista si calculeaza numarul zecimal corespunzator sumei.
+
+;inverseaza o lista
+;myReverse(l1..ln, col) = col, n = 0
+;                         myReverse(l2..ln, l1 U col), altfel, unde col este colector, initial []
+
+(defun myReverse (l col)
+  (cond
+    ((null l) col)  
+    (t (myReverse (cdr l) (cons (car l) col)))
+    )
+)
+
+;transforma un o lista de cifre in numar
+;listaInNr(l1..ln) = 0, n = 0
+;                    l1 + (10 * listaInNr(l2..ln)), altfel
+(defun listaInNr(l)
+    (cond
+        ((null l) 0)
+        (t (+ (car l) (* 10 (listaInNr (cdr l) ) )) )
+    )
+)
+
+
+;suma a doua numere in reprezentare de lista
+;suma(l1, l2) = listaInNr(myReverse(l1, () )) + listaInNr(myReverse(l2, () )) 
+
+(defun suma (l1 l2)
+  (+ ( listaInNr( myReverse l1 () ) ) ( listaInNr( myReverse l2 () ) ) )
+)
+
+
+(print (suma '(1 2 0) '(2 0)))

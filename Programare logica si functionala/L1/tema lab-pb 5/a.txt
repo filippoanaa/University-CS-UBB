@@ -1,0 +1,19 @@
+;interclaseaza cu pastrarea dublurilor doua liste liniare sortate.
+;
+;interclasare(a1..an, b1..bm) = [], n=0 si b = 0
+;                               b1..bm, n = 0
+;                               a1..an, m = 0
+;                               a1 U interclasare (a2..an, b1..bm), a1 <= b1
+;                               b1 U interclasare (a1..an, b2..bm), altfel
+
+(defun interclasare (a b)
+  (cond
+    ((and (null a) (null b)) ())   
+    ((null a) b)                   
+    ((null b) a)                   
+    ((<= (car a) (car b)) (cons (car a) (interclasare (cdr a) b))) 
+    (t (cons (car b) (interclasare a (cdr b))))
+  )
+) 
+
+(print (interclasare '(1 2 3) '(1 2 3)))

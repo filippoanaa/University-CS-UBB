@@ -1,0 +1,28 @@
+;calculeaza cmmdc a doua nr
+;cmmdc(a, b) = a, a=b
+;              a + b, a=0 sau b=0
+;              cmmdc(a-b, b), a>b
+;              cmmdc(a, b-a), altfel
+
+(defun cmmdc (a b)
+  (cond
+    ((= a b) a)
+    ((or (= a 0) (= b 0)) (+ a b))
+    ((> a b) (cmmdc (- a b) b))
+    (t (cmmdc a (- b a)))))  
+
+    
+;calculeaza cmmdc  unei liste de numere
+;cmmdc(l1..ln) = 0, n = 0
+;                l1, n = 1
+;                cmmdc(l1, cmmdcLista(l2..ln)), altfel
+(defun cmmdcLista (l)
+  (cond
+    ((null l) 0)  
+    ((not (numberp (car l))) (cmmdcLista (cdr l))) 
+    ((null (cdr l)) (car l)) 
+    (t (cmmdc (car l) (cmmdcLista (cdr l))))
+  )
+)  
+
+(print (cmmdcLista '(2 3 4 a)))  
